@@ -1,16 +1,18 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Greeter from "./components/Greeter";
 
+import "bootstrap/dist/css/bootstrap.css";
+
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Greeter />
-      </header>
-    </div>
+    <main className="container">
+      <Greeter
+        logo="https://www.esri.com/content/dam/esrisites/en-us/common/icons/product-logos/BusinessAnalyst.png"
+        companyName="Esri"
+      />
+      <hr />
+    </main>
   );
 };
 

@@ -1,5 +1,15 @@
 import React from "react";
 
-export default function Greeter() {
-  return <div>Hello!</div>;
+interface GreeterProps {
+  companyName: string;
+  logo: string;
+}
+
+export default function Greeter({ companyName, logo, ...props }: GreeterProps) {
+  return (
+    <div>
+      Hello, {companyName}! <br />
+      <img className="float-right" src={logo} alt="Logo" />
+    </div>
+  );
 }
