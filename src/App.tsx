@@ -1,7 +1,8 @@
 import React from 'react';
 import { Greeter } from './Greeter';
-import PayeesGrid from './payees/PayeesGrid';
+import PayeesGrid from './payees/PayeesGridFn';
 import { Payee } from './common/common-types';
+import PayeesManager from './payees/PayeesManager';
 
 const App: React.FC = () => {
   return (
@@ -10,7 +11,8 @@ const App: React.FC = () => {
         <Greeter companyName={'Weyland-Yutani Corporation'} />
         <hr />
       </header>
-      <PayeesGrid payees={getPayees()} />
+      {/* <PayeesGrid payees={getPayees()} /> */}
+      <PayeesManager />
     </main>
   );
 };
