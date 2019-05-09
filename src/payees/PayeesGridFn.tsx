@@ -51,8 +51,8 @@ const PayeesGrid = ({ payees }: PayeesGridProps) => {
         {sortedPayees.map(payee => (
           <tr key={payee.id}>
             <td>{payee.payeeName}</td>
-            <td>{payee.address.city}</td>
-            <td>{payee.address.state}</td>
+            <td>{payee.address && payee.address.city}</td>
+            <td>{payee.address && payee.address.state}</td>
           </tr>
         ))}
       </tbody>

@@ -3,6 +3,7 @@ import { Greeter } from './Greeter';
 import PayeesGrid from './payees/PayeesGridFn';
 import { Payee } from './common/common-types';
 import PayeesManager from './payees/PayeesManager';
+import PayeesFetcher from './payees/PayeesFetcher';
 
 const App: React.FC = () => {
   return (
@@ -12,7 +13,16 @@ const App: React.FC = () => {
         <hr />
       </header>
       {/* <PayeesGrid payees={getPayees()} /> */}
-      <PayeesManager />
+      {/* <PayeesManager /> */}
+      <PayeesFetcher>
+        {payees => {
+          if (payees.length > 0) {
+            return <PayeesGrid payees={payees} />;
+          } else {
+            return <p>Waiting....</p>;
+          }
+        }}
+      </PayeesFetcher>
     </main>
   );
 };
