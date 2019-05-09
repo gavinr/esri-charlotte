@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 import { Greeter } from './Greeter';
 import PayeesGrid from './payees/PayeesGridFn';
 import { Payee } from './common/common-types';
@@ -7,24 +13,54 @@ import PayeesFetcher from './payees/PayeesFetcher';
 
 const App: React.FC = () => {
   return (
-    <main className="container">
-      <header>
-        <Greeter companyName={'Weyland-Yutani Corporation'} />
-        <hr />
-      </header>
-      {/* <PayeesGrid payees={getPayees()} /> */}
-      <PayeesManager />
-      {/*       <PayeesFetcher>
-        {payees => {
-          if (payees.length > 0) {
-            return <PayeesGrid payees={payees} />;
-          } else {
-            return <p>Waiting....</p>;
-          }
-        }}
-      </PayeesFetcher>
- */}{' '}
-    </main>
+    <Router>
+      <main className="container">
+        <header>
+          <Greeter companyName={'Weyland-Yutani Corporation'} />
+          <hr />
+        </header>
+        <nav>
+          <ul className="list-inline">
+            <li className="list-inline-item">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="list-inline-item">
+              <Link to="/payees-manager">Payees Manager</Link>
+            </li>
+            <li className="list-inline-item">
+              <Link to="/payees-grid">Payees Grid (standalone)</Link>
+            </li>
+            <li className="list-inline-item">
+              <Link to="/payees-fetcher">Payees Fetcher</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Route path="/payees-manager" component={PayeesManager} />
+        <Route path="/" exact render={() => <h1>Welcome Home!</h1>} />
+        <Route path="/home" render={() => <Redirect to="/" />} />
+
+        <Route
+          path="/payees-grid"
+          render={() => <PayeesGrid payees={getPayees()} />}
+        />
+
+        <Route
+          path="/payees-fetcher"
+          render={() => (
+            <PayeesFetcher>
+              {payees => {
+                if (payees.length > 0) {
+                  return <PayeesGrid payees={payees} />;
+                } else {
+                  return <p>Waiting....</p>;
+                }
+              }}
+            </PayeesFetcher>
+          )}
+        />
+      </main>
+    </Router>
   );
 };
 
