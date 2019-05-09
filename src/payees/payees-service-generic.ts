@@ -11,7 +11,7 @@ interface PayeesSearchFields {
   'address.zip': string;
 }
 
-type PayeesSearchCriteria = Partial<PayeesSearchFields>;
+export type PayeesSearchCriteria = Partial<PayeesSearchFields>;
 
 /* interface DataService {
   getById: <T>(id: string) => Promise<T | null>;
