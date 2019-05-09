@@ -6,7 +6,7 @@ export interface Payee {
   payeeName: string;
   address: Address;
   categoryId: string;
-  image?: string;
-  motto?: string;
+  image?: string | null;
+  motto?: string | null;
   active: boolean;
 }
