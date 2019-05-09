@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import { Payee } from '../common/common-types';
 import * as lodash from 'lodash';
 
-interface Column {
-  field: string;
-  label: string;
-}
+type SortDirection = 'asc' | 'desc';
 
 interface PayeesGridProps {
   payees: Payee[];
 }
-
-type SortDirection = 'asc' | 'desc';
 
 interface PayeesGridState {
   sortField: string;

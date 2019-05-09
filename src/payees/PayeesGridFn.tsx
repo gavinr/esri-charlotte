@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Payee } from '../common/common-types';
 import * as lodash from 'lodash';
 
@@ -12,6 +12,22 @@ interface PayeesGridState {
   sortField: string;
   sortDirection: SortDirection;
 }
+
+const betterHandler = (
+  sortField: string,
+  sortConfig: PayeesGridState,
+  setter: React.Dispatch<React.SetStateAction<PayeesGridState>>,
+) => {
+  let sortDirection: SortDirection = 'asc';
+  if (
+    sortField === sortConfig.sortField &&
+    sortConfig.sortDirection === 'asc'
+  ) {
+    sortDirection = 'desc';
+  }
+
+  setter({ sortField, sortDirection });
+};
 
 const PayeesGrid = ({ payees }: PayeesGridProps) => {
   const [sortConfig, setSortConfig] = useState<PayeesGridState>({
@@ -42,9 +58,27 @@ const PayeesGrid = ({ payees }: PayeesGridProps) => {
     <table className="table table-striped table-hover">
       <thead>
         <tr className="clickable">
-          <th onClick={() => handleHeaderClick('payeeName')}>Payee Name</th>
-          <th onClick={() => handleHeaderClick('address.city')}>City</th>
-          <th onClick={() => handleHeaderClick('address.state')}>State</th>
+          <th
+            onClick={() =>
+              betterHandler('payeeName', sortConfig, setSortConfig)
+            }
+          >
+            Payee Name
+          </th>
+          <th
+            onClick={() =>
+              betterHandler('address.city', sortConfig, setSortConfig)
+            }
+          >
+            City
+          </th>
+          <th
+            onClick={() =>
+              betterHandler('address.state', sortConfig, setSortConfig)
+            }
+          >
+            State
+          </th>
         </tr>
       </thead>
       <tbody>
