@@ -7,18 +7,18 @@ const PayeesManager = () => {
   const [payees, setPayees] = useState<Payee[]>([]);
 
   useEffect(() => {
-    // if (payees.length === 0) {
     service.search().then(fetchedPayees => {
       if (fetchedPayees) {
         setPayees(fetchedPayees);
       }
     });
-    // }
+
+    console.log('useEffect ran');
 
     return () => {
-      console.log('The equivalent of componentWillUnmount()');
+      console.log('cleanup (not necessarily componentWillUnmount()');
     };
-  }, [payees.length]);
+  }, []);
 
   let comp = <p>Waiting....</p>;
   if (payees.length > 0) {
